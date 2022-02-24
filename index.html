@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script defer src="cliente.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <title>Temperatura</title>
+</head>
+<body>
+  <div id="mensajes" class="console"></div>
+  <div>
+    <div class="shadow">
+      <form action="" id="msgForm">
+        <input class="data fields" type="text" name="msg" placeholder="prender o apagar" />
+        <button>Enviar</button>
+      </form>
+    </div>
+
+      
+
+    <div class="canvaDiv">
+      <div class="customCanva">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+      
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <div id="debug"></div>
+      <script src="./index.js">
+        fetch("temperature.json")
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.array)
+          document.querySelector("#debug").innerText = JSON.stringify(data);
+        })
+      </script>
+      <script id="datosT">
+        //Datos que irian abajo, ejemplo: Tiempo en segundos
+        
+        const labels = ['1s', '2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', '10s'];
+        const datos = [1,2,3,4,5]
+              const data = {
+                labels: labels,
+                datasets: [{
+                  label: 'My First dataset',
+                  backgroundColor: 'rgb(255, 99, 132)',
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: datos,
+                }]
+              };
+
+        const config = {
+                type: 'line',
+                data: data,
+                options: {}
+              };
+        </script> 
+        <script>
+          const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+          );
+        </script>
+
+  </div>
+
+</body>
+</html>
