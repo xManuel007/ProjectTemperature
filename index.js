@@ -2,8 +2,7 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
-const { Server, Socket } = require("socket.io");
-let socket2
+const { Server } = require("socket.io");
 const io = new Server(server,{
     cors: {
     origin: "http://127.0.0.1:5500",
@@ -13,10 +12,10 @@ const io = new Server(server,{
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
+  
 });
 
 io.on('connection',(socket)=>{
-    socket2 = socket
     console.log('Usuario conectado..');
     socket.emit('message','hola mundo');
     socket.on('disconnect',()=>{
@@ -40,6 +39,12 @@ const port = new SerialPort({
   //autoOpen: false,
 })
 
+server.listen(3000, () => {
+  console.log('listening on *:3000');
+});
+
+//Code para guardar los valores en JSON
+
 let cont = 1;
 let array = new Array();
 
@@ -47,17 +52,27 @@ const parser = new ReadlineParser({delimiter: '\r\n'});
 port.pipe(parser);
 parser.on('data', function (temp){
     array.push({"valor": temp});
-    if(cont == 10){
+    if(cont % 10 == 0 ){
       let print = JSON.stringify({array});
+      print = JSON.parse(print);
       console.log(print);
+      
+      // array.forEach(temp => {
+      //   console.log(temp.valor);
+      // });
+
       array = [];
-      cont=1
     }
     cont++;
+
+
 })
 
-server.listen(3000, () => {
-  console.log('listening on *:3000');
-});
+const SendData = () =>{
+  
 
-const datasSet = [1,4,5,1,2,12,15,12,11]
+}
+
+
+
+

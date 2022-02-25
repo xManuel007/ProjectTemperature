@@ -29,16 +29,23 @@
     </div>
       
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <div id="debug"></div>
-      <script src="./index.js">
-        fetch("temperature.json")
-        .then(response => response.json())
-        .then(data => {
-          console.log(data.array)
-          document.querySelector("#debug").innerText = JSON.stringify(data);
-        })
-      </script>
+
       <script id="datosT">
+        // function getData() {
+        //   const xDatos =  new XMLHttpRequest()
+          
+        //   xDatos.open('GET','temperatura.json')
+          
+        //   xDatos.send()
+          
+        //   xDatos.onreadystatechange = function () {
+            
+        //     if(this.readyState == 4 && this.status == 200){
+        //       let datos = JSON.parse(this.responseText)
+        //       console.log(datos)
+        //     }
+        //   }
+        // }
         //Datos que irian abajo, ejemplo: Tiempo en segundos
         
         const labels = ['1s', '2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', '10s'];
@@ -64,6 +71,7 @@
             document.getElementById('myChart'),
             config
           );
+          
         </script>
 
   </div>
