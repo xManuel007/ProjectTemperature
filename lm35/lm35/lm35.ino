@@ -15,7 +15,7 @@ void loop() {
   lectura = analogRead(A0);
 
   //Obtenemos la temperatura con la siguiente formula:
-  temperatura = (( lectura * (500.0 / 1023.0)/2) );
+  temperatura = (( lectura * (500.0 / 1023.0)) );
   
   //Imprimimos por monitor serie la temperatura en celcius 
   Serial.println(temperatura);

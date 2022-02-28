@@ -11,7 +11,11 @@
   <title>Temperatura</title>
 </head>
 <body>
-  <div id="mensajes" class="console"></div>
+  <!--Aqui se envian los mensaje de la consola como "prender" -->
+  <div class="console">
+    <div id="mensajes" class="consoleInfo"></div>
+  </div>
+
   <div>
     <div class="shadow">
       <form action="" id="msgForm">
@@ -27,36 +31,22 @@
         <canvas id="myChart"></canvas>
       </div>
     </div>
-      
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>const datosTemp = [4,1,5,10,25,30,12,3,5];</script>
 
-      <script id="datosT">
-        // function getData() {
-        //   const xDatos =  new XMLHttpRequest()
-          
-        //   xDatos.open('GET','temperatura.json')
-          
-        //   xDatos.send()
-          
-        //   xDatos.onreadystatechange = function () {
-            
-        //     if(this.readyState == 4 && this.status == 200){
-        //       let datos = JSON.parse(this.responseText)
-        //       console.log(datos)
-        //     }
-        //   }
-        // }
-        //Datos que irian abajo, ejemplo: Tiempo en segundos
+      <script src="index.js">console.log(`<%= people%>`)</script>
+
+      <script>
         
         const labels = ['1s', '2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', '10s'];
-        const datos = [1,2,3,4,5]
+        
               const data = {
                 labels: labels,
                 datasets: [{
                   label: 'My First dataset',
                   backgroundColor: 'rgb(255, 99, 132)',
                   borderColor: 'rgb(255, 99, 132)',
-                  data: datos,
+                  data: datosTemp,
                 }]
               };
 
@@ -71,7 +61,6 @@
             document.getElementById('myChart'),
             config
           );
-          
         </script>
 
   </div>

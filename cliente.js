@@ -1,5 +1,7 @@
+
 const mensajes=document.getElementById('mensajes');
 const msgForm=document.getElementById('msgForm');
+const datosT = document.getElementById('datosT')
 const socket=io('http://localhost:3000');
 socket.on('message',data=>{
     console.log(data);
@@ -12,8 +14,19 @@ msgForm.addEventListener('submit',e=>{
     socket.emit('chatmsg',msgForm.msg.value);
     msgForm.msg.value='';
 })
-function agregarMensaje(mensaje){
+
+const agregarMensaje = (mensaje) => {
 const html=`<div>${mensaje}\n</div>`;
 mensajes.innerHTML += html;
 }
 
+socket.on('info', data =>{
+  console.log(data)
+  mandarDatos(data)
+})
+
+
+const mandarDatos = (data) => {
+  const datosT = `<script>${datosTemp = data}</script`
+  datosT.innerHTML += datosT
+}
