@@ -33,6 +33,6 @@ socket.on('temperature', data =>{
   console.log(newArray);
 })
 
-export const x = () =>{
-  return newArray;
-}
+// export const x = () =>{
+//   return newArray;
+// }
