@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script defer src="cliente.js"></script>
   <link rel="stylesheet" href="styles.css">
   <title>Temperatura</title>
@@ -26,44 +27,17 @@
 
       
 
+    <!--Aqui inicia el scrip de la grafica-->
     <div class="canvaDiv">
       <div class="customCanva">
         <canvas id="myChart"></canvas>
       </div>
     </div>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <script>const datosTemp = [4,1,5,10,25,30,12,3,5];</script>
 
-      <script src="index.js">console.log(`<%= people%>`)</script>
-
-      <script>
-        
-        const labels = ['1s', '2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', '10s'];
-        
-              const data = {
-                labels: labels,
-                datasets: [{
-                  label: 'My First dataset',
-                  backgroundColor: 'rgb(255, 99, 132)',
-                  borderColor: 'rgb(255, 99, 132)',
-                  data: datosTemp,
-                }]
-              };
-
-        const config = {
-                type: 'line',
-                data: data,
-                options: {}
-              };
-        </script> 
-        <script>
-          const myChart = new Chart(
-            document.getElementById('myChart'),
-            config
-          );
-        </script>
+    
+        <!--Aqui termina el scrip de la grafica-->
 
   </div>
-
+  <script src="/config.js"></script>
 </body>
 </html>

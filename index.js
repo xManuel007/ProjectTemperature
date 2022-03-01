@@ -5,6 +5,14 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const { SerialPort,ReadlineParser } = require('serialport');
 
+//Server
+//Socket.emit('temperatura', JSON);
+
+//Cliente
+/*Socket.on('temperatura',  ()=>{
+  show datos
+})*/
+
 const port = new SerialPort({
   path: 'COM3',
   baudRate: 9600,
@@ -16,24 +24,40 @@ server.listen(3000, () => {
 });
 
 
+let cont = 1;
+let array = new Array();
+let arrayFull = new Array();
   
-  let array = new Array();
-  
-  array = [0,0,0,0,0,0,0,0,0,0,0];
+  //array = [0,0,0,0,0,0,0,0,0,0,0];
   const parser = new ReadlineParser({delimiter: '\r\n'});
   port.pipe(parser);
   parser.on('data', function (temp){
-    array.unshift({'valor':temp});
-    array.pop()
-    let arrayJson = JSON.stringify({array});
-    arrayJson = JSON.parse(arrayJson);
-    console.log(arrayJson);
-
+    array.push({"valor": temp});
+    if(cont % 10 == 0 ){
+      let print = JSON.stringify({array});
+      print = JSON.parse(print);
+      console.log(print);
+      arrayFull = array;
+      
+      // array.forEach(temp => {
+      //   console.log(temp.valor);
+      // });
+      
+      array = [];
+    }
+    cont++;
+ 
+    
+    /* array.unshift({'valor':temp});
+     array.pop()
+     let arrayJson = JSON.stringify({array});
+     arrayJson = JSON.parse(arrayJson);
+     console.log(arrayJson);*/
     })
 
-let ejs = require('ejs');
-let people = ['geddy', 'neil', 'alex'];
-ejs.render('<%= people.join(", "); %>', {people: people});
+// let ejs = require('ejs');
+// let people = ['geddy', 'neil', 'alex'];
+// ejs.render('<%= people.join(", "); %>', {people: people});
 
 
 const io = new Server(server,{
@@ -66,6 +90,7 @@ io.on('connection',(socket)=>{
     socket.on('dato', () =>{
       socket.emit('info', array)
     })
+    socket.emit('temperature',arrayFull);
     //intento de mandar una constante a html
 })
 
